@@ -32,7 +32,7 @@ MAX_MENSAJES = 1000
 # MÚSICA
 # ===============================
 music_queue = []
-audio_source = None  
+audio_source = None  # Referencia global para la canción actual
 
 # ===============================
 # FUNCIONES AUXILIARES
@@ -40,7 +40,7 @@ audio_source = None
 
 def play_next(ctx):
     global audio_source
-    voice_client = ctx.guild.voice_client  
+    voice_client = ctx.guild.voice_client
     if not voice_client:
         return
 
@@ -51,7 +51,6 @@ def play_next(ctx):
             'noplaylist': True,
             'quiet': True,
             'default_search': 'ytsearch',
-            'max_downloads': 1,
         }
 
         try:
@@ -61,22 +60,30 @@ def play_next(ctx):
                     info = info['entries'][0]
                 audio_url = info.get('url')
                 title = info.get('title', 'Desconocido')
-        except Exception:
+        except Exception as e:
             asyncio.run_coroutine_threadsafe(
-                ctx.send("❌ No se pudo reproducir la siguiente canción de la cola."),
+                ctx.send(f"❌ No se pudo reproducir la canción: {e}"),
                 bot.loop
             )
             return
 
+        FFMPEG_OPTIONS = {
+            'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
+            'options': '-vn'
+        }
+
         audio_source = discord.FFmpegPCMAudio(
             audio_url,
             executable=r"C:\ffmpeg-2025-08-25-git-1b62f9d3ae-essentials_build\bin\ffmpeg.exe",
-            options="-vn -reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5"
+            **FFMPEG_OPTIONS
         )
 
         def after_play(error):
-            # Cuando termina la canción, reproducimos la siguiente
-            fut = asyncio.run_coroutine_threadsafe(play_next(ctx), bot.loop)
+            if error:
+                print(f"Error en after_play: {error}")
+            fut = asyncio.run_coroutine_threadsafe(
+                play_next_async(ctx), bot.loop
+            )
             try:
                 fut.result()
             except:
@@ -84,6 +91,10 @@ def play_next(ctx):
 
         voice_client.play(audio_source, after=after_play)
         asyncio.run_coroutine_threadsafe(ctx.send(f"🎵 Reproduciendo: {title}"), bot.loop)
+
+
+async def play_next_async(ctx):
+    play_next(ctx)
 
 # ===============================
 # EVENTOS
