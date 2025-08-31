@@ -7,7 +7,7 @@ import asyncio
 # ===============================
 # CONFIGURACIÓN
 # ===============================
-TOKEN = "TU_TOKEN_DISCORD"
+TOKEN = "TU_TOKEN_DISCORD_DEV"
 COMMAND_PREFIX = "!"
 
 # ===============================
@@ -211,3 +211,4 @@ async def on_command_error(ctx, error):
 # EJECUTAR BOT
 # ===============================
 bot.run(TOKEN)
+
