@@ -18,9 +18,9 @@ Actualizacion 1.1.1 (6/12/2026)
 - Bot funcional ✅
 
 Spotify
-✅Playlist
-❌Cancion individual
+- ✅Playlist
+- ❌Cancion individual
 
 Youtube
-✅Playlist
-✅Cancion individual
+- ✅Playlist
+- ✅Cancion individual
