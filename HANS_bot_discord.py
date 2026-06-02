@@ -45,6 +45,7 @@ current_voice = None
 is_playing = False
 current_title = None
 current_url = None
+inactive_task = None
 
 # ===============================
 # CONFIG YTDLP (FIX)
