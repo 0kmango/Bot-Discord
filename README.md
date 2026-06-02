@@ -5,7 +5,7 @@ Puede contener errores
 -------------------------------------
 Codigo en desarrollo...
 -------------------------------------
-Actualizacion 1.1.1 (6/12/2026)
+Actualizacion 1.1.1 (2/6/2026)
 
 - Contiene errores menores en listas de reproduccion spotify / youtube
 - Puede morir el bot si se reproduce lista privada de spotify (deben ser solo playlist publicas)
