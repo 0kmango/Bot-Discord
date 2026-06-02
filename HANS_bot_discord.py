@@ -695,6 +695,7 @@ async def hans(ctx):
         "`!play <canción/link>` → Reproduce música\n"
         "`!skip` → Salta la canción\n"
         "`!pause` → Pausa la música\n"
+        "`!again` → Reinicia la música actual\n"
         "`!resume` → Reanuda la música\n"
         "`!stop` → Detiene la música\n"
         "`!queue` → Muestra la cola\n"
