@@ -44,6 +44,7 @@ music_queue = []
 current_voice = None
 is_playing = False
 current_title = None
+current_url = None
 
 # ===============================
 # CONFIG YTDLP (FIX)
@@ -86,6 +87,8 @@ async def play_next(ctx):
     global is_playing
     global current_voice
     global current_title
+    global inactive_task
+    inactive_task = None
 
     # SI NO HAY MÁS CANCIONES
     if len(music_queue) == 0:
@@ -93,8 +96,16 @@ async def play_next(ctx):
         is_playing = False
         current_title = None
 
+        if inactive_task is None:
+
+            inactive_task = asyncio.create_task(
+                auto_disconnect(
+                    ctx.guild
+                )
+            )
+
         await ctx.send(
-            "✅ La cola terminó."
+            "✅ La cola terminó. Me suicidare en 10 minutos si nadie reproduce música."
         )
 
         return
@@ -199,6 +210,30 @@ async def play_next(ctx):
         await play_next(ctx)
 
 # ===============================
+# AUTO DESCONECTAR POR INACTIVIDAD
+# ===============================
+async def auto_disconnect(guild):
+
+    global current_voice
+    global inactive_task
+
+    await asyncio.sleep(600)  # 10 minutos
+
+    if guild.voice_client:
+
+        if not guild.voice_client.is_playing():
+
+            await guild.voice_client.disconnect()
+
+            current_voice = None
+
+            print(
+                "🔌 Desconectado por 10 minutos de inactividad."
+            )
+
+    inactive_task = None
+
+# ===============================
 # PLAY
 # ===============================
 @bot.command()
@@ -206,6 +241,13 @@ async def play(ctx, *, query: str):
 
     global current_voice
     global is_playing
+    global inactive_task
+
+    if inactive_task:
+
+        inactive_task.cancel()
+        inactive_task = None
+    
 
     if ctx.author.voice is None:
         await ctx.send("❌ Debes estar en un canal de voz.")
@@ -594,15 +636,32 @@ async def hi(ctx):
 # ===============================
 @bot.command()
 async def bye(ctx):
-    global current_voice, is_playing
+
+    global current_voice
+    global is_playing
+    global inactive_task
+
+    if inactive_task:
+
+        inactive_task.cancel()
+        inactive_task = None
 
     if ctx.guild.voice_client is not None:
+
         await ctx.guild.voice_client.disconnect()
+
         current_voice = None
         is_playing = False
-        await ctx.send("👋 Me fui del canal de voz.")
+
+        await ctx.send(
+            "👋 Me fui del canal de voz."
+        )
+
     else:
-        await ctx.send("❌ No estoy en ningún canal de voz.")
+
+        await ctx.send(
+            "❌ No estoy en ningún canal de voz."
+        )
 
 # ===============================
 # COMANDO EMBED
@@ -668,6 +727,36 @@ async def mc(ctx):
     embed.set_footer(text="Hans Bot Minecraft")
 
     await ctx.send(embed=embed)
+    
+# ===============================
+# AUTO DESCONECTAR SI QUEDA SOLO
+# ===============================
+@bot.event
+async def on_voice_state_update(member, before, after):
+
+    global current_voice
+    global is_playing
+
+    voice_client = member.guild.voice_client
+
+    if voice_client is None:
+        return
+
+    canal = voice_client.channel
+
+    usuarios = [
+        m for m in canal.members
+        if not m.bot
+    ]
+
+    if len(usuarios) == 0:
+
+        await voice_client.disconnect()
+
+        current_voice = None
+        is_playing = False
+
+        print("🔌 Desconectado porque quedó solo en el canal.")
 
 # ===============================
 # READY
