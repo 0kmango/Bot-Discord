@@ -7,4 +7,4 @@ Codigo en desarrollo
 -------------------------------------
 Actualizacion 1.1.1 (6/12/2026)
 - Contiene errores en listas de reproduccion spotify / youtube 
-Bot funcional ✅
+- Bot funcional ✅
