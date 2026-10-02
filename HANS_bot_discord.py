@@ -672,14 +672,14 @@ async def embed(ctx, *, mensaje):
 
     embed = discord.Embed(
         description=mensaje,
-        color=discord.Color.blue()
+        color=discord.Color.orange()
     )
 
     await ctx.send(embed=embed)
     
 
 # ===============================
-# COMANDO HANS
+# COMANDO MANGO
 # ===============================
 @bot.command()
 async def mango(ctx):
@@ -687,7 +687,7 @@ async def mango(ctx):
     embed = discord.Embed(
         title="🤖 Comandos de Mango Bot",
         description="Lista de comandos disponibles",
-        color=discord.Color.blue()
+        color=discord.Color.orange()
     )
 
     embed.add_field(
@@ -771,4 +771,3 @@ async def on_ready():
 # RUN
 # ===============================
 bot.run(DISCORD_TOKEN)
-
