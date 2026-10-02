@@ -590,7 +590,7 @@ async def queue(ctx):
 # ===============================
 @bot.command()
 async def ping(ctx):
-    await ctx.send(f"Pong ctm! 🏓 Latencia: {round(bot.latency*1000)}ms")
+    await ctx.send(f"Pong! 🏓 Latencia: {round(bot.latency*1000)}ms")
 
 # ===============================
 # COMANDO LYRICS
@@ -682,10 +682,10 @@ async def embed(ctx, *, mensaje):
 # COMANDO HANS
 # ===============================
 @bot.command()
-async def hans(ctx):
+async def mango(ctx):
 
     embed = discord.Embed(
-        title="🤖 Comandos de Hans Bot",
+        title="🤖 Comandos de Mango Bot",
         description="Lista de comandos disponibles",
         color=discord.Color.blue()
     )
@@ -726,7 +726,7 @@ async def mc(ctx):
         color=discord.Color.green()
     )
 
-    embed.set_footer(text="Hans Bot Minecraft")
+    embed.set_footer(text="Mango Bot Minecraft")
 
     await ctx.send(embed=embed)
     
@@ -771,3 +771,4 @@ async def on_ready():
 # RUN
 # ===============================
 bot.run(DISCORD_TOKEN)
+
