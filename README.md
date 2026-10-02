@@ -1,11 +1,11 @@
 # Bot-Discord
 
 Bot de discord musical con funciones adicionales.
-
+  
 Puede contener errores - Codigo en desarrollo...
 --------------------------------------------------------------------------
 
-Actualizacion 1.1.1 (2/6/2026)
+***Actualizacion 1.1.1 (2/6/2026)***
 
 - Contiene errores menores en listas de reproduccion Spotify / Youtube
 - Puede morir el bot si se reproduce lista privada de spotify (deben ser solo playlist publicas)
@@ -20,7 +20,7 @@ Actualizacion 1.1.1 (2/6/2026)
 
 --------------------------------------------------------------------------
 
-Actualizacion 1.1.2 (2/10/2026)
+***Actualizacion 1.1.2 (2/10/2026)***
 
 - Bot actualizazo a "MangoBot" con funcionalidades en desarrollo (-HansBot descontinuado-)
 - Referente al punto anterior el comando base se actualiza de "!hans" a "!mango"
@@ -33,10 +33,10 @@ Actualizacion 1.1.2 (2/10/2026)
   
 - Bot funcional ✅
   
-Spotify
+***Spotify***
 - ✅Playlist
 - ✅Cancion individual
 
-Youtube
+***Youtube***
 - ✅Playlist
 - ✅Cancion individual
