@@ -18,6 +18,14 @@ Puede contener errores - Codigo en desarrollo...
   
 - Bot funcional ✅
 
+  ***Spotify***
+- ✅Playlist
+- ❌Cancion individual
+
+***Youtube***
+- ✅Playlist
+- ✅Cancion individual
+
 --------------------------------------------------------------------------
 
 ***Actualizacion 1.1.2 (2/10/2026)***
