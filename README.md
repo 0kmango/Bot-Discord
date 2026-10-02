@@ -18,7 +18,7 @@ Puede contener errores - Codigo en desarrollo...
   
 - Bot funcional ✅
 
-  ***Spotify***
+***Spotify***
 - ✅Playlist
 - ❌Cancion individual
 
