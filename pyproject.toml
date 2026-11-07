@@ -1,0 +1,16 @@
+[project]
+name = "mango-bot"
+version = "1.7.9"
+description = "Bot de Discord con música, personalidad propia y base para Mango AI"
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+exclude = [".venv", "__pycache__"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM"]
+# discord.py 2.x sigue esperando typing.Optional en los converters de
+# comandos; PEP 604 (X | None) se aplica al resto del código cuando toque.
+ignore = ["UP045"]

@@ -1,0 +1,39 @@
+# --- Secretos (NUNCA subir al repo) ---
+.env
+*.env
+!.env.example
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+env/
+build/
+dist/
+*.egg-info/
+
+# --- Datos locales del bot ---
+data/
+*.db
+*.sqlite3
+cookies.txt
+*.session
+
+# --- Logs ---
+*.log
+logs/
+
+# --- Editores / SO ---
+.vscode/
+.idea/
+.DS_Store
+
+# --- Modelos de voz locales (se descargan con ./run.sh --voices) ---
+models/
+.cache
+
+# --- PID del arranque en segundo plano (Windows) ---
+mango.pid

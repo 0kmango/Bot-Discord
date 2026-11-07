@@ -1,0 +1,2 @@
+# Herramientas de desarrollo (no necesarias para ejecutar el bot)
+ruff==0.15.2

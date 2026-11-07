@@ -1,0 +1,46 @@
+# ============================================================
+#  Mango Bot - dependencias
+#  Instalación recomendada (Python 3.11 - 3.13):
+#
+#  Linux / macOS:
+#      python3.12 -m venv .venv
+#      source .venv/bin/activate
+#      pip install -r requirements.txt
+#      ./run.sh
+#
+#  Windows (PowerShell o CMD):
+#      py -3.12 -m venv .venv
+#      .venv\Scripts\activate
+#      pip install -r requirements.txt
+#      run.bat
+# ============================================================
+
+# --- Núcleo de Discord (con soporte de voz: incluye PyNaCl) ---
+discord.py[voice]==2.7.1
+# discord.py 2.7.1 usa la API de davey 0.1.x. NO subir a 0.2.x: cambió el
+# manejo de transiciones y la sesión DAVE deja de descifrar (voz sorda / 4017).
+davey==0.1.7
+
+# --- Música ---
+yt-dlp==2026.10.26
+spotipy==2.25.1
+lyricsgenius==3.15.0
+
+# --- Configuración y utilidades ---
+python-dotenv==1.1.1
+
+# ============================================================
+#  Mango AI (texto y voz)
+# ============================================================
+# Cliente para cualquier API compatible con OpenAI (OpenAI, Groq, Ollama…)
+openai>=1.60,<4
+# Recepción de audio en canales de voz (sink de discord.py 2.x)
+discord-ext-voice-recv==0.5.2a179
+# STT local sin API (Whisper en CPU)
+faster-whisper==1.2.1
+# TTS neuronal gratuito (voces es-ES / es-MX)
+edge-tts==7.3.1
+# Mezcla de música + voz y conversión PCM
+numpy>=2.0
+# HTTP asíncrono (lo usa el cliente de voz y las llamadas a APIs)
+aiohttp>=3.10
